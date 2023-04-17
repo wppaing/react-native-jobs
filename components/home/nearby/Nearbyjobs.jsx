@@ -9,7 +9,7 @@ import {
 import NearbyJobCard from '../../common/cards/nearby/NearbyJobCard';
 
 import styles from './nearbyjobs.style';
-import { SIZES } from '../../../constants';
+import { COLORS, SIZES } from '../../../constants';
 import useFetch from '../../../hooks/useFetch';
 
 const NearbyJobs = () => {
@@ -30,7 +30,7 @@ const NearbyJobs = () => {
 
       <View style={styles.cardsContainer}>
         {isLoading ? (
-          <ActivityIndicator />
+          <ActivityIndicator size="large" color={COLORS.primary} />
         ) : error ? (
           <Text>Something went wrong.</Text>
         ) : (

@@ -9,7 +9,7 @@ import {
 import PopularJobCard from '../../common/cards/popular/PopularJobCard';
 
 import styles from './popularjobs.style';
-import { SIZES } from '../../../constants';
+import { COLORS, SIZES } from '../../../constants';
 import useFetch from '../../../hooks/useFetch';
 
 const PopularJobs = () => {
@@ -30,7 +30,7 @@ const PopularJobs = () => {
 
       <View style={styles.cardsContainer}>
         {isLoading ? (
-          <ActivityIndicator />
+          <ActivityIndicator size="large" color={COLORS.primary} />
         ) : error ? (
           <Text>Something went wrong.</Text>
         ) : (

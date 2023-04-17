@@ -33,7 +33,7 @@ const Home = () => {
           headerTitle: '',
         }}
       />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View
           style={{
             flex: 1,

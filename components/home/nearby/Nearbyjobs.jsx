@@ -1,14 +1,44 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+  FlatList,
+} from 'react-native';
+import NearbyJobCard from '../../common/cards/nearby/NearbyJobCard';
 
-import styles from './nearbyjobs.style'
+import styles from './nearbyjobs.style';
+import { SIZES } from '../../../constants';
+import useFetch from '../../../hooks/useFetch';
 
-const Nearbyjobs = () => {
+const NearbyJobs = () => {
+  const { isLoading, data, error, refetch } = useFetch('search', {
+    query: 'react developer',
+    page: '1',
+    num_pages: '1',
+  });
+
   return (
-    <View>
-      <Text>Nearbyjobs</Text>
-    </View>
-  )
-}
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Popular Jobs</Text>
+        <TouchableOpacity>
+          <Text style={styles.headerBtn}>Show All</Text>
+        </TouchableOpacity>
+      </View>
 
-export default Nearbyjobs
+      <View style={styles.cardsContainer}>
+        {isLoading ? (
+          <ActivityIndicator />
+        ) : error ? (
+          <Text>Something went wrong.</Text>
+        ) : (
+          data?.map((job) => <NearbyJobCard item={job} key={job.job_id} />)
+        )}
+      </View>
+    </View>
+  );
+};
+
+export default NearbyJobs;
